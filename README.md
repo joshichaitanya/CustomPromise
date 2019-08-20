@@ -1,5 +1,4 @@
-FakePromise = function(callback) {
-
+	FakePromise = function(callback) {
 	this.promiseSuccess
 	this.promiseError
 	callback(success => {
@@ -9,14 +8,13 @@ FakePromise = function(callback) {
 		console.log('error: ', error)
 		if (typeof this.promiseError === 'function') this.promiseError()
 	})
-	this.then=(callback)=>{this.promiseSuccess = callback}
-	this.catch=(callback)=>{this.promiseError = callback}
-}
+		this.then=(callback)=>{this.promiseSuccess = callback}
+		this.catch=(callback)=>{this.promiseError = callback}
+	}
+	new FakePromise(function(resolve, reject) {
+	  setTimeout(() => reject('fine!'), 1000);
+	}).then(()=> {
+		console.log('inside then')
+	})
 
-new FakePromise(function(resolve, reject) {
 
-  setTimeout(() => reject('fine!'), 1000);
-
-}).then(()=> {
-console.log('inside then')
-})
