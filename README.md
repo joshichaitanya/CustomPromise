@@ -10,9 +10,13 @@ FakePromise = function(callback) {
 		if (typeof this.promiseError === 'function') this.promiseError()
 	})
 	this.then=(callback)=>{this.promiseSuccess = callback}
-	this.error=(callback)=>{this.promiseError = callback}
+	this.catch=(callback)=>{this.promiseError = callback}
 }
 
 new FakePromise(function(resolve, reject) {
+
   setTimeout(() => reject('fine!'), 1000);
-}).then(()=> {console.log('inside then')})
+
+}).then(()=> {
+console.log('inside then')
+})
